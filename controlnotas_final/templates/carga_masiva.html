@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Carga Masiva</title>
+    <style>
+        body { font-family:Arial,sans-serif; background:#f0f2f5; display:flex;
+               justify-content:center; align-items:center; min-height:100vh; margin:0; }
+        .card { background:white; padding:35px 40px; border-radius:12px;
+                box-shadow:0 4px 12px rgba(0,0,0,0.15); width:440px; }
+        h2 { color:#1E1BD2; text-align:center; }
+        .info { background:#eaf4fb; border:1px solid #3498db; border-radius:8px;
+                padding:14px; margin-bottom:20px; font-size:13px; color:#2c3e50; }
+        .info b { color:#1E1BD2; }
+        input[type=file] { width:100%; padding:10px; border:2px dashed #1E1BD2;
+                           border-radius:6px; box-sizing:border-box; background:#f8f9ff;
+                           cursor:pointer; }
+        button { width:100%; margin-top:18px; padding:12px; background:#1E1BD2;
+                 color:white; border:none; border-radius:6px; font-size:16px; cursor:pointer; }
+        button:hover { background:#1714a8; }
+        .back { display:block; text-align:center; margin-top:14px;
+                color:#1E1BD2; text-decoration:none; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h2> Carga Masiva de Estudiantes</h2>
+    <div class="info">
+        El archivo Excel debe tener las columnas:<br>
+        <b>Nombre | Carrera | Edad | Nota1 | Nota2 | Nota3</b><br><br>
+        Los registros inválidos o duplicados serán rechazados y podrás descargar el reporte.
+    </div>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="txtarchivo" accept=".xlsx,.xls" required>
+        <button type="submit"> Cargar Archivo</button>
+    </form>
+    <a class="back" href="/dashprincipal">← Volver al Dashboard</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado Carga Masiva</title>
+    <style>
+        body { font-family:Arial,sans-serif; background:#f0f2f5; display:flex;
+               justify-content:center; align-items:center; min-height:100vh; margin:0; }
+        .card { background:white; padding:35px 40px; border-radius:12px;
+                box-shadow:0 4px 12px rgba(0,0,0,0.15); width:480px; text-align:center; }
+        h2 { color:#1E1BD2; margin-bottom:25px; }
+        table { width:100%; border-collapse:collapse; margin:20px 0; }
+        th { background:#1E1BD2; color:white; padding:12px; }
+        td { padding:12px; border-bottom:1px solid #eee; font-size:16px; }
+        td:first-child { text-align:left; }
+        td:last-child { font-weight:bold; font-size:20px; }
+        .insertado { color:#27ae60; }
+        .rechazado { color:#e74c3c; }
+        .duplicado { color:#e67e22; }
+        .btn { display:inline-block; padding:12px 24px; border-radius:6px;
+               text-decoration:none; font-size:15px; margin:6px; }
+        .btn-dashboard { background:#1E1BD2; color:white; }
+        .btn-descarga  { background:#e74c3c; color:white; }
+        .btn:hover { opacity:0.88; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h2> Resultado del Cargue Masivo</h2>
+
+    <table>
+        <tr>
+            <th>Resultado</th>
+            <th>Cantidad</th>
+        </tr>
+        <tr>
+            <td> Insertados correctamente</td>
+            <td class="insertado">{{ insertados }}</td>
+        </tr>
+        <tr>
+            <td> Rechazados (datos inválidos)</td>
+            <td class="rechazado">{{ rechazados }}</td>
+        </tr>
+        <tr>
+            <td> Duplicados</td>
+            <td class="duplicado">{{ duplicados }}</td>
+        </tr>
+    </table>
+
+    {% if tiene_rechazados %}
+    <p style="color:#c0392b; font-weight:bold;">
+        Se generó un archivo con los registros rechazados. Descárgalo para revisar los motivos.
+    </p>
+    <a class="btn btn-descarga" href="/descargar_rechazados">⬇️ Descargar Rechazados (.xlsx)</a>
+    <br>
+    {% endif %}
+
+    <a class="btn btn-dashboard" href="/dashprincipal"> Ver Dashboard</a>
+</div>
+</body>
+</html>
