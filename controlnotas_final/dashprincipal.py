@@ -154,7 +154,25 @@ def creartablero(server):
     )
     def actualizar_comp(carrera, rangoedad, rangoprome, busqueda, n_intervals):
 
-        dataf = obtenerestudiantes()
+        dataf = obtenerestudiantes();
+
+        print("COLUMNAS:", dataf.columns)
+        print("FILAS:", len(dataf))
+        print(dataf.head())
+
+        columnas_necesarias = ["Nombre", "Edad", "Carrera", "Promedio", "Desempeño"]
+
+        for col in columnas_necesarias:
+            if col not in dataf.columns:
+                print(f"❌ Falta columna: {col}")
+                return (
+                    [], None, 0, 100, [0, 100],
+                    [], [], [],
+                    px.scatter(title=f"Falta columna {col}"),
+                    px.scatter(), px.scatter(), px.scatter(),
+                    html.P(f"Error: falta columna {col}", style={"color": "red"}),
+                    html.P("Sin ranking")
+                )
 
         if dataf.empty:
             fig_vacio = px.scatter(title="Sin datos")
@@ -218,7 +236,7 @@ def creartablero(server):
                              color_discrete_sequence=["#3498db"])
 
         dispersion = px.scatter(filtro, x="Edad", y="Promedio", color="Desempeño",
-                                trendline="ols", title="Edad vs Promedio")
+                                title="Edad vs Promedio")
 
         pie = px.pie(filtro, names="Desempeño", title="Distribución por Desempeño")
 
@@ -329,8 +347,7 @@ def creartablero(server):
             return px.scatter(title="Sin datos seleccionados")
         fig = px.scatter(dff, x="Edad", y="Promedio", color="Desempeño",
                          size="Promedio",
-                         title="Análisis detallado (seleccione filas de la tabla)",
-                         trendline="ols")
+                         title="Análisis detallado (seleccione filas de la tabla)")
         return fig
 
     return appnotas
